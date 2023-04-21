@@ -126,10 +126,7 @@ public class BookShopForm {
 				String edition = txtEditionYear.getText();
 				String price = txtBookPrice.getText();
 				
-				System.out.println(author);
-				System.out.println(book);
-				System.out.println(edition);
-				System.out.println(price);
+				
 				
 				clearForm();
 				

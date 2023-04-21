@@ -10,7 +10,10 @@ public class BookEntity {
 	public BookEntity() {	
 		
 	}
-	
+    public BookEntity(String  authorName,String bookName,String editionYear, String bookPrice) {	
+		this.authorName = authorName;
+		
+	}
 	public void setAuthorName(String authorName) {
 		this.authorName = authorName;
 	}
