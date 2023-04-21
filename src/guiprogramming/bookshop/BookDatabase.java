@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 public class BookDatabase {
 	
-	private String jdbcURL ="jdbc:mysql://localhosst:3306/dbbookshop?useSSL=false";
+	private String jdbcURL = "jdbc:mysql://localhost:3306/dbbookshop?useSSL=false";;
 	private String jdbcUserName = "root";
 	private String jdbcPassword = "1234";
-	private String jdbcDriver = "com.mysql.jdbc.driver";
+	private String jdbcDriver = "com.mysql.jdbc.Driver";
 	
 	public BookDatabase() {	
 	}

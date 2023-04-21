@@ -45,7 +45,12 @@ public class BookShopForm {
 	/**
 	 * Create the application.
 	 */
+	private BookDao daoBook;
+	
+	
 	public BookShopForm() {
+		daoBook = new BookDao();
+		
 		initialize();
 	}
 	
@@ -126,7 +131,8 @@ public class BookShopForm {
 				String edition = txtEditionYear.getText();
 				String price = txtBookPrice.getText();
 				
-				
+				BookEntity bookObject = new BookEntity(author,book,edition,price); 
+				daoBook.insertBook(bookObject);
 				
 				clearForm();
 				
