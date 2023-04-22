@@ -7,6 +7,7 @@ import javax.swing.JToolBar;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -14,9 +15,14 @@ import java.awt.Font;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
+
+import net.proteanit.sql.DbUtils;
+
 import javax.swing.border.MatteBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JTextField;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 public class BookShopForm {
 
@@ -46,22 +52,31 @@ public class BookShopForm {
 	 * Create the application.
 	 */
 	private BookDao daoBook;
+	private JTable table;
 	
 	
 	public BookShopForm() {
 		daoBook = new BookDao();
-		
 		initialize();
+		loadTable();
+		
 	}
 	
 	public void clearForm() {
 		
 		txtAuthor.setText("");
 		txtBook.setText("");
-		txtEditionYear.setText("");
+		txtEditionYear.setText(""); 
 		txtBookPrice.setText("");
 	}
 
+	public void loadTable() {
+		ResultSet rs = daoBook.loadTableData();
+		table.setModel(DbUtils.resultSetToTableModel(rs));
+	}
+	
+	
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -134,6 +149,8 @@ public class BookShopForm {
 				BookEntity bookObject = new BookEntity(author,book,edition,price); 
 				daoBook.insertBook(bookObject);
 				
+				
+				loadTable();
 				clearForm();
 				
 			}
@@ -151,6 +168,13 @@ public class BookShopForm {
 		btnReset.setFont(new Font("Tahoma", Font.BOLD, 20));
 		btnReset.setBounds(183, 288, 135, 58);
 		panel.add(btnReset);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(374, 69, 516, 347);
+		frame.getContentPane().add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
 		frame.setBounds(100, 100, 914, 536);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

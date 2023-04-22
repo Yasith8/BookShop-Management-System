@@ -2,6 +2,7 @@ package guiprogramming.bookshop;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class BookDao {
@@ -39,7 +40,33 @@ public class BookDao {
 			e.printStackTrace();
 		}
 		
-		System.out.println("book is "+book.getBookName());
+		
+	
+	}
+	
+public ResultSet loadTableData() {
+		
+		final String ALL_BOOKDETAILS_SQL = "select * from tablebook";
+		
+		Connection con = database.getDatabaseConnection();
+		
+		PreparedStatement ps;
+		ResultSet rs=null ;
+		
+		try {
+			ps = con.prepareStatement(ALL_BOOKDETAILS_SQL);
+			rs= ps.executeQuery();
+			
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+		
+		
 	
 	}
 	
